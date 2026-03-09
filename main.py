@@ -29,14 +29,18 @@ async def main():
         openai_client=provider,
     )
 
-    agent = Agent(
-        name="Testing Agent",
-        instructions="You are an AI made for testing purpose only!",
-        model=model
-    )
+    userInput = "dummy"
+    while(userInput != "quit"):
+        userInput = input("User: ").lower()
+        agent = Agent(
+            name="Testing Agent",
+            instructions="You are an AI made for testing purpose only!",
+            model=model
+        )
 
-    result = await Runner.run(agent, input="what is your name is are the ways you can be tested!")
-    print(result.final_output)
+        result = await Runner.run(agent, input=userInput)
+        print(result.final_output)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
